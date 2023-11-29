@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"regexp"
 
-	tpls "github.com/go-echarts/go-echarts/v2/templates"
+	tpls "github.com/kasaderos/go-echarts/v2/templates"
 )
 
 // Renderer

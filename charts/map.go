@@ -1,10 +1,10 @@
 package charts
 
 import (
-	"github.com/go-echarts/go-echarts/v2/datasets"
-	"github.com/go-echarts/go-echarts/v2/opts"
-	"github.com/go-echarts/go-echarts/v2/render"
-	"github.com/go-echarts/go-echarts/v2/types"
+	"github.com/kasaderos/go-echarts/v2/datasets"
+	"github.com/kasaderos/go-echarts/v2/opts"
+	"github.com/kasaderos/go-echarts/v2/render"
+	"github.com/kasaderos/go-echarts/v2/types"
 )
 
 // Map represents a map chart.
