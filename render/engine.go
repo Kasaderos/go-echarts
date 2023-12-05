@@ -27,11 +27,12 @@ var pat = regexp.MustCompile(`(__f__")|("__f__)|(__f__)`)
 
 type pageRender struct {
 	c      interface{}
+	templ  *template.Template
 	before []func()
 }
 
 // NewPageRender returns a render implementation for Page.
-func NewPageRender(c interface{}, before ...func()) Renderer {
+func NewPageRender(c interface{}, templ *template.Template, before ...func()) Renderer {
 	return &pageRender{c: c, before: before}
 }
 
@@ -41,12 +42,9 @@ func (r *pageRender) Render(w io.Writer) error {
 		fn()
 	}
 
-	contents := []string{tpls.HeaderTpl, tpls.BaseTpl, tpls.PageTpl}
-	tpl := MustTemplate(ModPage, contents)
-
 	var buf bytes.Buffer
-	if err := tpl.ExecuteTemplate(&buf, ModPage, r.c); err != nil {
-		return err
+	if err := r.templ.Execute(&buf, r.c); err != nil {
+		return fmt.Errorf("render: %w", err)
 	}
 
 	content := pat.ReplaceAll(buf.Bytes(), []byte(""))

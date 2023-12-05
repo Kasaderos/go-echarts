@@ -1,6 +1,8 @@
 package components
 
 import (
+	"html/template"
+
 	"github.com/kasaderos/go-echarts/v2/opts"
 	"github.com/kasaderos/go-echarts/v2/render"
 )
@@ -32,10 +34,10 @@ type Page struct {
 }
 
 // NewPage creates a new page.
-func NewPage() *Page {
+func NewPage(templ *template.Template) *Page {
 	page := &Page{}
 	page.Assets.InitAssets()
-	page.Renderer = render.NewPageRender(page, page.Validate)
+	page.Renderer = render.NewPageRender(page, templ, page.Validate)
 	page.Layout = PageCenterLayout
 	return page
 }
