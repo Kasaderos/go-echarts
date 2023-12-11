@@ -33,7 +33,7 @@ type pageRender struct {
 
 // NewPageRender returns a render implementation for Page.
 func NewPageRender(c interface{}, templ *template.Template, before ...func()) Renderer {
-	return &pageRender{c: c, before: before}
+	return &pageRender{c: c, before: before, templ: templ}
 }
 
 // Render renders the page into the given io.Writer.
